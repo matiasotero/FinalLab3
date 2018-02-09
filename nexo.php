@@ -42,6 +42,9 @@ switch ($queHago) {
 	case 'MostrarCargaHelado':
 		include("partes/HeladoCarga.php");
 		break;
+	case 'MostrarAltaVentaConImagen':
+		include('partes/AltaVentaConImagen.php');
+		break;
 	case 'BorrarProducto':
 			$producto = new producto();
 			$producto->id=$_POST['id'];

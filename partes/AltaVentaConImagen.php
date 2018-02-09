@@ -19,6 +19,8 @@
         <input type="number"  maxlength="3"  id="peso" title="Ingrese peso (kg.)" class="form-control" placeholder="Ingrese el peso (kg.)" required="" autofocus="">
         <input readonly   type="hidden"    id="idProducto" class="form-control" >
        
+        <input type="file" accept="image/*">
+
         <button  class="btn btn-lg btn-success btn-block" type="submit"><span class="glyphicon glyphicon-floppy-save">&nbsp;&nbsp;</span>Consultar</button>
      
       </form>
