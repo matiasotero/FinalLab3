@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content=" initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="css/blended_layout.css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+ <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+ <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link href="css/media-queries.css" rel="stylesheet" type="text/css">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+ <link rel="icon" href="UTN.ico">
+<script type="text/javascript" src="js/funcionesAjax.js"></script>
+<script type="text/javascript" src="js/funcionesLogin.js"></script>
+<script type="text/javascript" src="js/funcionesABM.js"></script>
+<title>Final ProgIII</title>
+</head>
+	<body>
+		<header>
+			<h1 class="titlePage" align="center" >Final - Programacion III</h1>
+		</header>
+		<div class="blended_grid">
+			<div class="pageHeader">
+
+			</div>
+			<div class="MenuBar" align="center">
+				<div id="frameUsuario">
+				</div>
+				<ul id="MiBarra">
+						<!--<li><a onclick="MostrarError()" class="btn">Ajax<br> Error!!!</a></li>
+						<li><a onclick="MostrarSinParametros()" class="btn">Ajax<br>Sin Parametros</a> </li>
+						<li><a onclick="Mostrar('foto')" class="btn">Foto<br>(parametros y POST) </a> </li>
+						<li><a onclick="Mostrar('video')" class="btn">Video<br>(parametros y POST)</a> </li><!---->
+						<li><input type="search" id="usuario" readonly placeholder="Sin Usuario"></li>
+						<li>Tipo de Login</li>
+						<li>
+							<select id="loginType">
+							  <option value="pdo">Base de Datos</option>
+							  <option value="txt">Archivo de Texto</option>
+							</select>
+						</li>
+						<li>Tipo de Producto</li>
+						<li>
+							<select id="prodType">
+							  <option value="pdo">Base de Datos</option>
+							  <option value="txt">Archivo de Texto</option>
+							</select>
+						</li>
+						<li><a onclick="Mostrar('MostrarCargaHelado')" class="btn">Alta Helado<br>-Sesión-</a> </li> 
+						<li><a onclick="Mostrar('MostrarAltaVenta')" class="btn">Alta Venta<br>-Sesión-</a> </li> 
+						<li><a onclick="Mostrar('MostrarConsultaHelado')" class="btn">Consultar un helado<br>-Sesión-</a> </li> 
+						<li><a onclick="MostarLogin()"  class="btn btn-primary"id="BotonLogin" >Login<br>-Sesión-</a> </li>
+				</ul>
+				<div id="botonesLogin">
+
+				</div>
+			</div>
+			<div class="Principal" id="principal" align="center">
+
+			</div>
+			<div class="Informe">
+				<h4 align="center">Informe:</h4><br>
+				<div align="center" id="informe">
+
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>
+
