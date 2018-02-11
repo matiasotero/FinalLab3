@@ -313,3 +313,7 @@ function GuardarVenta(){
 
 	//console.log(venta);
 }
+
+function SubirFoto(){
+	
+}
