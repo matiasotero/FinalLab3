@@ -3,7 +3,7 @@
 
     <div>
 
-      <form class="form-ingreso" onsubmit="GuardarVenta();return false">
+      <form class="form-ingreso" onsubmit="GuardarVentaConFoto();return false">
         <h2 class="form-ingreso-heading">Alta venta</h2>
         <label for="mail" class="sr-only">Mail</label>
         <input type="mail" name="mail" id="mail" title="Ingrese un mail" class="form-control" placeholder="Ingrese un mail" required="" autofocus="">
@@ -19,7 +19,7 @@
         <input type="number"  maxlength="3"  id="peso" title="Ingrese peso (kg.)" class="form-control" placeholder="Ingrese el peso (kg.)" required="" autofocus="">
         <input readonly   type="hidden"    id="idProducto" class="form-control" >
        
-        <button  class="btn btn-lg btn-success btn-block" type="submit"><span class="glyphicon glyphicon-floppy-save">&nbsp;&nbsp;</span>Consultar</button>
+        <button  class="btn btn-lg btn-success btn-block" type="submit"><span class="glyphicon glyphicon-floppy-save">&nbsp;&nbsp;</span>Dar de alta</button>
      
       </form>
 

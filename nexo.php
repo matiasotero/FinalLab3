@@ -157,6 +157,12 @@ switch ($queHago) {
 			echo "No hay helado!";
 		}
 		break;
+	case "GuardarVentaConFoto":
+		$venta = $_POST["venta"];
+		if(Helado::BuscarHelado($venta["sabor"], $venta["tipo"]) == "Si hay"){
+			echo Helado::EntregarMercaderia($venta["sabor"], $venta["tipo"], $venta["peso"]);
+		}
+		break;
 	default:
 		# code...
 		break;

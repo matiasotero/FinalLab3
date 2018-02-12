@@ -314,6 +314,68 @@ function GuardarVenta(){
 	//console.log(venta);
 }
 
+function GuardarVentaConFoto(){
+	alert("estoy en guardar venta con foto.");
+	// var formData = new FormData();
+	// formData.append("mail", $('#mail').val());
+	// formData.append("sabor", $('#sabor').val());
+	// var tipo = $('#tipo option:selected').text();
+	// formData.append("tipo", tipo);
+	// formData.append("peso", $('#peso').val());
+	var _venta = {};
+	_venta.mail = $('#mail').val();
+	_venta.sabor = $('#sabor').val();
+	_venta.tipo = $('#tipo option:selected').text();
+	_venta.peso = $('#peso').val();
+	_venta.archivo = $('#foto').val();
+
+	var funcionAjax = $.ajax({
+		url: 'nexo.php',
+		type:'post',
+		cache: false,
+		async: true,
+		data:{
+			queHacer: 'GuardarVentaConFoto',
+			venta: _venta
+		}
+	});
+
+	funcionAjax.done(function(objJson){
+		console.info(objJson);
+	});
+
+	console.info(_venta);
+}
+
 function SubirFoto(){
-	
+	var foto = $('#foto').val();
+
+	if(foto === ""){
+		return;
+	}
+	var test = $('#foto');
+	//console.log(test);
+	var archivo = $('#foto')[0];
+	var formData = new FormData();
+	formData.append("archivo", archivo.files[0]);
+	formData.append("queHacer","subirFoto");
+	//formData.append("fotoAnterior",);
+
+	var funcionAjax = $.ajax({
+		url: "nexo.php",
+		type: "post",
+		dataType: "json",
+		cache: false,
+		contentType: false,
+		processData: false,
+		data : formData,
+		async : true
+	});
+
+	funcionAjax.done(function(objJson){			
+		$('#frameFoto').html(objJson.Html);
+		if(!objJson.Exito)
+			alert(object.Mensaje);		
+			return;
+	});
 }

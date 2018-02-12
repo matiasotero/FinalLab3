@@ -21,8 +21,9 @@
        
         <input type="file" accept="image/*" id="foto" onchange="SubirFoto()">
 
-        <button  class="btn btn-lg btn-success btn-block" type="submit"><span class="glyphicon glyphicon-floppy-save">&nbsp;&nbsp;</span>Consultar</button>
+        <button  class="btn btn-lg btn-success btn-block" onclick="GuardarVentaConFoto()" type="submit"><span class="glyphicon glyphicon-floppy-save">&nbsp;&nbsp;</span>Dar de alta</button>
      
+        <div id="frameFoto" ></div>
       </form>
 
     </div> <!-- /container -->
