@@ -6,6 +6,7 @@ class Helado
 	public $precio;
 	public $tipo;
 	public $peso;
+	public $pathFoto;
 
 	public function ModificarProductoParametros()
 	{
@@ -73,7 +74,13 @@ class Helado
 	}
 
 	function ToString(){
-		return $this->id."|".$this->sabor."|".$this->precio."|".$this->tipo."|".$this->peso."\n";
+		$objToString = $this->id."|".$this->sabor."|".$this->precio."|".$this->tipo."|".$this->peso;
+		if($this->pathFoto === NULL){
+			return $objToString."\n";
+		}
+		else {
+			$objToString = $objToString.$this->pathFoto."\n";
+		}
 	}
 
 	public static function BuscarHelado($sabor, $tipo){
@@ -96,11 +103,11 @@ class Helado
 			if(!$isAny){
 				for($n=0; $n < count($arrayHelados); $n++){
 					if($sabor != strtolower($arrayHelados[$n][1]) && $tipo == strtolower($arrayHelados[$n][3])){
-						return $message = "Exite el tipo pero no el sabor";
+						return $message = "Existe el tipo pero no el sabor";
 					}	
 					else{
 						if($sabor == strtolower($arrayHelados[$n][1]) && $tipo != strtolower($arrayHelados[$n][3])){
-							return $message = "Exite el sabor pero no el tipo";
+							return $message = "Existe el sabor pero no el tipo";
 						}
 					}					
 				}

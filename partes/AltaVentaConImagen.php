@@ -28,6 +28,12 @@
 
     </div> <!-- /container -->
 
-
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#mail').val("motero@motero.com");
+    $('#sabor').val("Pera");
+    $('#peso').val(10);
+  });
+</script>
     
   

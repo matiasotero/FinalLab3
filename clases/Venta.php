@@ -7,6 +7,10 @@ class Venta{
 
     function ToString(){
 		return $this->mail."|".$this->sabor."|".$this->tipo."|".$this->peso."\n";
-	}
+  }
+  
+  public static function GuardarVenta(){
+    
+  } 
 }
 ?>

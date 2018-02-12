@@ -157,10 +157,17 @@ switch ($queHago) {
 			echo "No hay helado!";
 		}
 		break;
-	case "GuardarVentaConFoto":
+	case "GuardarVentaConFoto":	
 		$venta = $_POST["venta"];
 		if(Helado::BuscarHelado($venta["sabor"], $venta["tipo"]) == "Si hay"){
+			if(!file_exists("./ImagenesDeLaVenta")){
+				mkdir("./ImagenesDeLaVenta",true);
+			}
+			Archivo::Mover("./tmp/".$venta["archivo"], "./ImagenesDeLaVenta/".$venta["archivo"]);
 			echo Helado::EntregarMercaderia($venta["sabor"], $venta["tipo"], $venta["peso"]);
+		}
+		else{
+			echo "No existe el helado!!";
 		}
 		break;
 	default:

@@ -315,7 +315,6 @@ function GuardarVenta(){
 }
 
 function GuardarVentaConFoto(){
-	alert("estoy en guardar venta con foto.");
 	// var formData = new FormData();
 	// formData.append("mail", $('#mail').val());
 	// formData.append("sabor", $('#sabor').val());
@@ -327,8 +326,8 @@ function GuardarVentaConFoto(){
 	_venta.sabor = $('#sabor').val();
 	_venta.tipo = $('#tipo option:selected').text();
 	_venta.peso = $('#peso').val();
-	_venta.archivo = $('#foto').val();
-
+	_venta.archivo = $('#hdnArchivoTemp').val();
+	
 	var funcionAjax = $.ajax({
 		url: 'nexo.php',
 		type:'post',
@@ -342,6 +341,7 @@ function GuardarVentaConFoto(){
 
 	funcionAjax.done(function(objJson){
 		console.info(objJson);
+		$('#informe').html(objJson);
 	});
 
 	console.info(_venta);
