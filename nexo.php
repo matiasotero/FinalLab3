@@ -4,6 +4,7 @@ require_once("clases/AccesoDatos.php");
 require_once("clases/usuario.php");
 require_once("clases/Helado.php");
 require_once("clases/archivo.php");
+require_once("clases/Venta.php");
 
 //var_dump($_POST);
 $queHago=$_POST['queHacer'];
@@ -149,9 +150,17 @@ switch ($queHago) {
 		$tipo = $venta["tipo"];
 		$mail = $venta["mail"];
 		$peso = $venta["peso"];
+
+		$ventaParaGuardar = new Venta();
+		$ventaParaGuardar->mail = $mail;
+		$ventaParaGuardar->sabor = $sabor;
+		$ventaParaGuardar->tipo = $tipo;
+		$ventaParaGuardar->peso = $peso;
+		//$ventaParaGuardar->pathFoto = $pathFoto;
 		
 		if(Helado::BuscarHelado($sabor,$tipo) == "Si hay"){
 			echo Helado::EntregarMercaderia($sabor, $tipo, $peso);
+			$ventaParaGuardar->GuardarVenta();
 		}
 		else{
 			echo "No hay helado!";

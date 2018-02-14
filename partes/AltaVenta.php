@@ -3,7 +3,7 @@
 
     <div>
 
-      <form class="form-ingreso" onsubmit="GuardarVentaConFoto();return false">
+      <form class="form-ingreso" onsubmit="GuardarVenta();return false">
         <h2 class="form-ingreso-heading">Alta venta</h2>
         <label for="mail" class="sr-only">Mail</label>
         <input type="mail" name="mail" id="mail" title="Ingrese un mail" class="form-control" placeholder="Ingrese un mail" required="" autofocus="">

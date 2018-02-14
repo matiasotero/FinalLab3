@@ -304,7 +304,9 @@ function GuardarVenta(){
 	});
 
 	funcionAjax.done(function(response){
+		$("#principal").html("");
 		$("#informe").html(response);
+
 	});
 
 	funcionAjax.fail(function(error){
