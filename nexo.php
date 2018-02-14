@@ -46,6 +46,9 @@ switch ($queHago) {
 	case 'MostrarAltaVentaConImagen':
 		include('partes/AltaVentaConImagen.php');
 		break;
+	case 'MostrarTablaVentas':
+		include('partes/TablaVentas.php');
+		break;
 	case 'BorrarProducto':
 			$producto = new producto();
 			$producto->id=$_POST['id'];
