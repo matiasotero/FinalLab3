@@ -117,5 +117,21 @@ function SubirFoto(){
 	})
 	funcionAjax.fail(function (jqXHR, textStatus, errorThrown) {
         alert("Hola! \n" + jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
-    }); 
+	}); 
+	
+	function BuscarVentas(){
+		var valor = $('#search').val();
+
+		var funcionAjax = $.ajax({
+			url: 'nexo.php',
+			type: 'get',
+			async: true,
+			cache: false,
+			data: valor
+		});
+
+		funcionAjax.done(function(objJson){
+			
+		});
+	}
 }
