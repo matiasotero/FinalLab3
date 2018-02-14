@@ -7,15 +7,29 @@ class Venta{
     public $peso;
     public $pathFoto;
 
+    public function __construct(){
+
+    }
+
+    public static function InicializateVenta($id = 0, $mail, $sabor, $tipo, $peso, $pathFoto = NULL){
+      $instance = new self();
+      $instance->id = $id;
+      $instance->mail = $mail;
+      $instance->sabor = $sabor;
+      $instance->tipo = $tipo;
+      $instance->peso = $peso;
+      $pathFoto->pathFoto = $pathFoto;
+      return $instance;
+    } 
+
     function ToString(){
       $objToString = $this->mail."|".$this->sabor."|".$this->tipo."|".$this->peso;
-		if($this->pathFoto === NULL){
-			return $objToString."\n";
-		}
-		else {
-      $objToString = $objToString.$this->pathFoto."\n";
-      return objToString.$pathFoto."\n";
-		}
+		  if($this->pathFoto === NULL){
+			  return $objToString."\n";
+		  }
+		  else {
+        return $objToString."|".$this->pathFoto."\n";
+		  }
   }
   
   public function GuardarVenta(){

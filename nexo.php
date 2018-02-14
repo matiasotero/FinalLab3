@@ -168,12 +168,22 @@ switch ($queHago) {
 		break;
 	case "GuardarVentaConFoto":	
 		$venta = $_POST["venta"];
+		$ventaParaGuardar = new Venta();
+		$ventaParaGuardar->mail = $venta["mail"];
+		$ventaParaGuardar->sabor = $venta["sabor"];
+		$ventaParaGuardar->tipo = $venta["tipo"];
+		$ventaParaGuardar->peso = $venta["peso"];
+		$ventaParaGuardar->pathFoto = $venta["archivo"];
+		//$ventaParaGuardar = Venta::InicializateVenta(0, $venta["mail"], $venta["sabor"], $venta["tipo"], $venta["peso"], $venta["archivo"]);
+		// echo var_dump($ventaParaGuardar);
+		// die();
 		if(Helado::BuscarHelado($venta["sabor"], $venta["tipo"]) == "Si hay"){
 			if(!file_exists("./ImagenesDeLaVenta")){
 				mkdir("./ImagenesDeLaVenta",true);
 			}
 			Archivo::Mover("./tmp/".$venta["archivo"], "./ImagenesDeLaVenta/".$venta["archivo"]);
 			echo Helado::EntregarMercaderia($venta["sabor"], $venta["tipo"], $venta["peso"]);
+			$ventaParaGuardar->GuardarVenta();
 		}
 		else{
 			echo "No existe el helado!!";
