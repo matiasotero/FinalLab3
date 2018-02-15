@@ -6,8 +6,7 @@ require_once("clases/Helado.php");
 require_once("clases/archivo.php");
 require_once("clases/Venta.php");
 
-//var_dump($_POST);
-$queHago=$_POST['queHacer'];
+$queHago= isset($_POST['queHacer']) ? $_POST['queHacer'] : $_GET['queHacer'];
 
 switch ($queHago) {
 	case 'foto':
@@ -190,6 +189,12 @@ switch ($queHago) {
 		}
 		else{
 			echo "No existe el helado!!";
+		}
+		break;
+	case "BuscarVentas":
+		$valor = $_GET['valor'];
+		if(isset($valor)){
+			
 		}
 		break;
 	default:

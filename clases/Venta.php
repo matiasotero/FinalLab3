@@ -23,7 +23,7 @@ class Venta{
     } 
 
     function ToString(){
-      $objToString = $this->mail."|".$this->sabor."|".$this->tipo."|".$this->peso;
+      $objToString = $this->id."|".$this->mail."|".$this->sabor."|".$this->tipo."|".$this->peso;
 		  if($this->pathFoto === NULL){
 			  return $objToString."\n";
 		  }
@@ -48,6 +48,27 @@ class Venta{
     $archivo = fopen("Ventas.txt", "a");
     fwrite($archivo, $this->ToString());
     fclose($archivo);
+  }
+
+  public static function TraerTodasLasVentasTxt(){
+    $archivo = fopen("Ventas.txt","r");
+    $arrayVentas = [];
+    while(!feof($archivo)){
+      $linea = fgets($archivo);
+      if($linea != ""){
+        $arrayData = explode("|", $linea);
+        $venta = new Venta();
+        $venta->id = $arrayData[0];
+        $venta->mail = $arrayData[1];
+        $venta->sabor = $arrayData[2];
+        $venta->tipo = $arrayData[3];
+        $venta->peso = $arrayData[4];
+        $venta->pathFoto = isset($arrayData[5]) ? $arrayData[5] : NULL;
+        array_push($arrayVentas, $venta);
+      }
+    }
+    fclose($archivo);
+    return $arrayVentas;
   }
   
   // public static function GuardarArrayVentaTxt($arrayVentas){

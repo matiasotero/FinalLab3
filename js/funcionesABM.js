@@ -381,3 +381,23 @@ function SubirFoto(){
 			return;
 	});
 }
+
+function BuscarVentas(){
+	var _valor = $('#search').val();
+
+	var funcionAjax = $.ajax({
+		url: 'nexo.php',
+		type: 'post',
+		cache: false,
+		async: true,
+		data: { queHacer: 'BuscarVentas', valor: _valor}
+	});
+
+	funcionAjax.done(function(success){
+		console.log("Exito: " + success);
+	});
+
+	funcionAjax.fail(function(errorCallBack){
+		console.log("Error: " + errorCallBack);
+	})
+}

@@ -1,3 +1,7 @@
+<?php
+	require_once('clases/Venta.php');
+	//$ventas = Venta::TraerTodasLasVentasTxt();
+?>
 <div class="row">
     <div class="col-lg-5">
         <input type="search" placeholder="Ingrese email, sabor o nada" class="form-control"/>
@@ -10,22 +14,41 @@
 <table class="table"  style=" background-color: beige;">
 	<thead>
 		<tr>
-			<th>Editar</th><th>Borrar</th><th>Nombre</th><th>Porcentaje</th>
+			<th>Editar</th>
+			<th>Borrar</th>
+			<th>Mail</th>
+			<th>Sabor</th>
+			<th>Tipo</th>
+			<th>Peso</th>
+			<th>Foto</th>
 		</tr>
 	</thead>
 	<tbody>
 
-		<?php 
-
-// foreach ($arrayDeProductos as $producto) {
-// 	echo"<tr>
-// 			<td><a onclick='EditarProducto($producto->id)' class='btn btn-warning'> <span class='glyphicon glyphicon-pencil'>&nbsp;</span>Editar</a></td>
-// 			<td><a onclick='BorrarProducto($producto->id)' class='btn btn-danger'>   <span class='glyphicon glyphicon-trash'>&nbsp;</span>  Borrar</a></td>
-// 			<td>$producto->nombre</td>	
-// 			<td>$producto->porcentaje</td>	
-
-// 		</tr>   ";
-// }
+		<?php
+		if(isset($ventas)){ 
+			foreach($ventas as $itemVenta){
+			echo
+			"<tr>
+				<td><a onclick='EditarProducto($itemVenta->id)' class='btn btn-warning'> <span class='glyphicon glyphicon-pencil'>&nbsp;</span>Editar</a></td>
+				<td><a onclick='BorrarProducto($itemVenta->id)' class='btn btn-danger'>   <span class='glyphicon glyphicon-trash'>&nbsp;</span>  Borrar</a></td>
+				<td>$itemVenta->mail</td>	
+				<td>$itemVenta->sabor</td>	
+				<td>$itemVenta->tipo</td>	
+				<td>$itemVenta->peso</td>";
+		?>
+		<?php
+				if(isset($itemVenta->pathFoto)){
+				echo		
+					"<td><img src='ImagenesDeLaVenta/$itemVenta->pathFoto' style='width:50px;height:50px'/></td>
+					
+					</tr>";
+				}
+				else{
+					echo "<td>Sin Imagen</td>";
+				}
+			}
+		}
 		 ?>
 	</tbody>
 </table>
