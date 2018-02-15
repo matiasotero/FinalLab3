@@ -2,6 +2,7 @@
 	require_once('clases/Venta.php');
 	//$ventas = Venta::TraerTodasLasVentasTxt();
 ?>
+<input type="hidden" id="data"/>
 <div class="row">
     <div class="col-lg-5">
         <input type="search" placeholder="Ingrese email, sabor o nada" class="form-control"/>

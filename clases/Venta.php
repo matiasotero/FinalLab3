@@ -63,7 +63,7 @@ class Venta{
         $venta->sabor = $arrayData[2];
         $venta->tipo = $arrayData[3];
         $venta->peso = $arrayData[4];
-        $venta->pathFoto = isset($arrayData[5]) ? $arrayData[5] : NULL;
+        $venta->pathFoto = isset($arrayData[5]) ? trim($arrayData[5]) : NULL;
         array_push($arrayVentas, $venta);
       }
     }

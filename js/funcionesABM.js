@@ -395,6 +395,8 @@ function BuscarVentas(){
 
 	funcionAjax.done(function(success){
 		console.log("Exito: " + success);
+		$('#data').val(success);
+		console.log($('#data').val());
 	});
 
 	funcionAjax.fail(function(errorCallBack){
