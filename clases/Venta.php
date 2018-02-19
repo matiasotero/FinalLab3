@@ -51,30 +51,41 @@ class Venta{
   }
 
   public static function TraerTodasLasVentasTxt(){
-    $archivo = fopen("Ventas.txt","r");
-    $arrayVentas = [];
+    $arrayVentas = Venta::TraerVentasTxt();
+    return $arrayVentas;
+  }
+
+  public static function TraerVentaPorClave($clave){
+    $arrayVentas = Venta::TraerVentasTxt();
+    $arrayVentasFiltradas = [];
+    foreach($arrayData as $venta){
+        if(strpos($clave, $venta[1]) || strpos($clave, $venta[1]) || strpos($clave, $venta[1])){
+          array_push($arrayVentasFiltradas, $venta);
+        }
+    }
+    return $arrayVentas;
+  }
+  
+  public static function TraerVentasTxt(){
+    
+    $archivo = fopen("Ventas.txt", "r");
     while(!feof($archivo)){
       $linea = fgets($archivo);
-      if($linea != ""){
-        $arrayData = explode("|", $linea);
+      if($linea != ""){        
         $venta = new Venta();
         $venta->id = $arrayData[0];
         $venta->mail = $arrayData[1];
         $venta->sabor = $arrayData[2];
         $venta->tipo = $arrayData[3];
-        $venta->peso = $arrayData[4];
+        $venta->peso = isset($arrayData[4]) ? trim($arrayData[4]) : NULL;
         $venta->pathFoto = isset($arrayData[5]) ? trim($arrayData[5]) : NULL;
+        if($arrayVentas)
         array_push($arrayVentas, $venta);
       }
     }
     fclose($archivo);
     return $arrayVentas;
   }
-  
-  // public static function GuardarArrayVentaTxt($arrayVentas){
-  //   $archivo = fopen("Ventas.txt", "w");
-  //   for($i=0; $i < count())
-  // }
 
 }
 ?>

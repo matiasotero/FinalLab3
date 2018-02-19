@@ -394,11 +394,36 @@ function BuscarVentas(){
 	});
 
 	funcionAjax.done(function(success){
-		console.log("Exito: " + success);
-		$('#data').val(success);
-		console.log($('#data').val());
+		var array = JSON.parse(success);
+		if(true){
+			// $('#table').append('<table class="table"  style=" background-color: beige;">' +
+			// '<thead>' +
+			// 	'<tr>' +
+			// 		'<th>Editar</th>' +
+			// 		'<th>Borrar</th>' +
+			// 		'<th>Mail</th>' +
+			// 		'<th>Sabor</th>' +
+			// 		'<th>Tipo</th>' +
+			// 		'<th>Peso</th>' +
+			// 		'<th>Foto</th>' +
+			// 	'</tr>' +
+			// '</thead>' +
+			// '<tbody>');
+			$('#rows').empty();
+			for(i=0; i< array.length; i++){
+				$('#rows').append(
+					'<tr>' +
+						'<td><a onclick="EditarProducto(' + array[i].id + ')" class="btn btn-warning"> <span class="glyphicon glyphicon-pencil">&nbsp;</span>Editar</a></td>' +
+							'<td><a onclick="BorrarProducto(' + array[i].id + ')" class="btn btn-danger">   <span class="glyphicon glyphicon-trash">&nbsp;</span>  Borrar</a></td>' +
+							'<td>' + array[i].mail + '</td>' +	
+							'<td>' + array[i].sabor + '</td>' +	
+							'<td>' + array[i].tipo + '</td>' +	
+							'<td>' + array[i].peso + '</td>' +
+					'</tr>');
+			}		
+		}
 	});
-
+	
 	funcionAjax.fail(function(errorCallBack){
 		console.log("Error: " + errorCallBack);
 	})
