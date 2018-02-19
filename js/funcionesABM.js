@@ -149,70 +149,31 @@ function EditarUsuario()
 
 function GuardarProducto()
 {
-	var tipoDatos = $("#prodType").val();
-	alert(tipoDatos);
-	if(tipoDatos == "pdo"){
+	var helado = [];
+	helado.sabor=$("#sabor").val();
+	helado.precio=$("#precio").val();
+	helado.tipo = $("#tipo option:selected").val();
+	helado.peso = $('#peso').val();
 
-			var id=$("#idProducto").val();
-			var sabor=$("#sabor").val();
-			var precio = $("#precio").val();
-			var tipo = $("#tipo option:selected").text();
-			var peso =$("#peso").val();
-			
-			if(porcentaje < 1 || porcentaje > 100){
-				alert("Porcentaje no valido (entre 1 y 100)");
-				return;
-			}
-
-			var funcionAjax=$.ajax({
-			url:"nexo.php",
-			type:"post",
-			data:{
-				queHacer:"GuardarProductoTxt",
-				id:id,
-				sabor:sabor,
-				precio:precio,
-				tipo:tipo,
-				peso:peso
-			}
-		});
-		funcionAjax.done(function(retorno){
-			$("#informe").html(retorno);	
-			
-		});
-		funcionAjax.fail(function(retorno){	
-			$("#informe").html(retorno.responseText);	
-		});	
-	}else if(tipoDatos == "txt"){
-		alert("PRODUCTO POR TXT");
-
-			var id=$("#idProducto").val();
-			var nombre=$("#nombre").val();
-			var porcentaje = $("#porcentaje").val();
-
-			if(porcentaje < 1 || porcentaje > 100){
-				alert("Porcentaje no valido (entre 1 y 100)");
-				return;
-			}
-		var funcionAjax=$.ajax({
-			url:"nexo.php",
-			type:"post",
-			data:{
-				queHacer:"GuardarProductoTxt",
-				id:id,
-				nombre:nombre,
-				porcentaje:porcentaje
-			}
-		});
-		funcionAjax.done(function(retorno){
-				//Mostrar("MostrarGrilla");
-			$("#informe").html("cantidad de agregados \n"+ retorno + "\n" + retorno.responseText);	
-			
-		});
-		funcionAjax.fail(function(retorno){	
-			$("#informe").html(retorno.responseText);	
-		});	
-	}
+	var funcionAjax=$.ajax({
+		url:"nexo.php",
+		type:"post",
+		data:{
+			queHacer:"GuardarProductoTxt",
+			helado: {"sabor": helado.sabor, "precio": helado.precio, "tipo": helado.tipo, "peso": helado.peso}
+		}
+	});
+	funcionAjax.done(function(retorno){
+		console.info(retorno);
+		$('#principal').html("<h1>Helado cargado con éxito!!</h1>");
+		//$("#informe").html("cantidad de agregados \n"+ retorno + "\n" + retorno.responseText);
+		//$('#informe').	
+		
+	});
+	funcionAjax.fail(function(retorno){	
+		//$("#informe").html(retorno.responseText);	
+	});	
+	
 }
 
 function ConsultarHelado()
@@ -394,6 +355,7 @@ function BuscarVentas(){
 	});
 
 	funcionAjax.done(function(success){
+		console.info(success);
 		var array = JSON.parse(success);
 		if(true){
 			// $('#table').append('<table class="table"  style=" background-color: beige;">' +

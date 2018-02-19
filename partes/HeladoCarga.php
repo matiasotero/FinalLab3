@@ -8,7 +8,7 @@
 
         <label for="sabor" class="sr-only">Sabor</label>
         <input type="text" name="sabor" id="sabor" title="Ingrese un sabor" class="form-control" placeholder="Ingrese un sabor" required="" autofocus="">
-        <label for="sabor" class="sr-only">Precio</label>
+        <label for="precio" class="sr-only">Precio</label>
         <input type="text"   name="precio" id="precio" title="Ingrese el precio" class="form-control" placeholder="Ingrese el precio" required="" autofocus="">                
        <select class="form-control" id="tipo" name="tipo">
          <option value="Crema">Crema</option>

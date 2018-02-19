@@ -77,13 +77,15 @@ switch ($queHago) {
 			echo $cantidad;
 		break;
 	case 'GuardarProductoTxt':
+			$producto = $_POST['helado'];
+			
 			$miHelado = new Helado();
 			$miHelado->id = 0;
 			
-			$miHelado->sabor = $_POST['sabor'];
-			$miHelado->precio = $_POST['precio'];
-			$miHelado->tipo = $_POST['tipo'];
-			$miHelado->peso = $_POST['peso'];
+			$miHelado->sabor = $producto['sabor'];
+			$miHelado->precio = $producto['precio'];
+			$miHelado->tipo = $producto['tipo'];
+			$miHelado->peso = $producto['peso'];
 
 			$miHelado->GuardarHelado();
 		break;
@@ -193,13 +195,14 @@ switch ($queHago) {
 		break;
 	case "BuscarVentas":
 		$valor = isset($_GET['valor']) ? $_GET['valor'] : NULL;
+		$arrayVentas = [];
 		if(isset($valor)){
-			
+			$arrayVentas = json_encode(Venta::TraerVentaPorClave($valor));
 		}
 		else{
 			$arrayVentas = json_encode(Venta::TraerTodasLasVentasTxt());
-			echo $arrayVentas;
 		}
+		echo $arrayVentas;
 		break;
 	default:
 		# code...

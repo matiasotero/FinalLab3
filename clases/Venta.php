@@ -63,15 +63,16 @@ class Venta{
           array_push($arrayVentasFiltradas, $venta);
         }
     }
-    return $arrayVentas;
+    return $arrayVentasFiltradas;
   }
   
   public static function TraerVentasTxt(){
-    
+    $arrayVentas = [];
     $archivo = fopen("Ventas.txt", "r");
     while(!feof($archivo)){
       $linea = fgets($archivo);
       if($linea != ""){        
+        $arrayData = explode("|", $linea);
         $venta = new Venta();
         $venta->id = $arrayData[0];
         $venta->mail = $arrayData[1];
@@ -79,7 +80,7 @@ class Venta{
         $venta->tipo = $arrayData[3];
         $venta->peso = isset($arrayData[4]) ? trim($arrayData[4]) : NULL;
         $venta->pathFoto = isset($arrayData[5]) ? trim($arrayData[5]) : NULL;
-        if($arrayVentas)
+
         array_push($arrayVentas, $venta);
       }
     }

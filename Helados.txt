@@ -1,3 +1,9 @@
 0|Pera|20|Crema|70
 1|Banana Split|50|Crema|60
 2|Dulce de leche|50|Crema|60
+3|Chocolate|40|Crema|120
+4|Chocolate al Rhum|50|Crema|120
+5|Frutilla|35|Agua|45
+6|Limon|40|Agua|80
+7|Uva|80|Agua|60
+8|Uva|20|Crema|200
