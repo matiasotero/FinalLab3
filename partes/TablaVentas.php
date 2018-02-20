@@ -5,15 +5,15 @@
 <input type="hidden" id="data"/>
 <div class="row">
     <div class="col-lg-5">
-        <input type="search" placeholder="Ingrese email, sabor o nada" class="form-control"/>
+        <input type="search" id="search" placeholder="Ingrese email, sabor o nada" class="form-control"/>
     </div>
     <div class="col-lg-3">
-        <button class="btn btn-primary" id="search" onclick="BuscarVentas()"><i class="glyphicon glyphicon-search" style="margin-right:10px"></i>Buscar</button>
+        <button class="btn btn-primary" onclick="BuscarVentas()"><i class="glyphicon glyphicon-search" style="margin-right:10px"></i>Buscar</button>
     </div>
 </div>
     <br/>
 	<!-- <div id="table"> -->
-	<table class="table"  style=" background-color: beige;">
+	<table class="table" id="table"  style=" background-color: beige;">
 		<thead>
 			<tr>
 				<th>Editar</th>
@@ -25,7 +25,7 @@
 				<th>Foto</th>
 			</tr>
 		</thead>
-		<tbody id="rows">
+		<tbody id="tbody">
 		</tbody>
 	</table>
 

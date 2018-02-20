@@ -344,43 +344,34 @@ function SubirFoto(){
 }
 
 function BuscarVentas(){
-	var _valor = $('#search').val();
-
+	var valor = $('#search').val();
+	// valor = valor !== "" ? null : valor;
 	var funcionAjax = $.ajax({
 		url: 'nexo.php',
-		type: 'post',
+		type: 'get',
 		cache: false,
 		async: true,
-		data: { queHacer: 'BuscarVentas', valor: _valor}
+		data: { queHacer: 'BuscarVentas', valor: valor}
 	});
 
 	funcionAjax.done(function(success){
-		console.info(success);
 		var array = JSON.parse(success);
-		if(true){
-			// $('#table').append('<table class="table"  style=" background-color: beige;">' +
-			// '<thead>' +
-			// 	'<tr>' +
-			// 		'<th>Editar</th>' +
-			// 		'<th>Borrar</th>' +
-			// 		'<th>Mail</th>' +
-			// 		'<th>Sabor</th>' +
-			// 		'<th>Tipo</th>' +
-			// 		'<th>Peso</th>' +
-			// 		'<th>Foto</th>' +
-			// 	'</tr>' +
-			// '</thead>' +
-			// '<tbody>');
-			$('#rows').empty();
+	
+		if(array !== null){
+			
+			$('#tbody').empty();
+			console.info(array.length);
 			for(i=0; i< array.length; i++){
-				$('#rows').append(
-					'<tr>' +
+				var foto = array[i].pathFoto == null ? "ImagenesDeLaVenta/nophoto.jpg" : "ImagenesDeLaVenta/" + array[i].pathFoto;
+				$('#table').find($('#tbody')).append(
+					'<tr id="rows">' +
 						'<td><a onclick="EditarProducto(' + array[i].id + ')" class="btn btn-warning"> <span class="glyphicon glyphicon-pencil">&nbsp;</span>Editar</a></td>' +
-							'<td><a onclick="BorrarProducto(' + array[i].id + ')" class="btn btn-danger">   <span class="glyphicon glyphicon-trash">&nbsp;</span>  Borrar</a></td>' +
-							'<td>' + array[i].mail + '</td>' +	
-							'<td>' + array[i].sabor + '</td>' +	
-							'<td>' + array[i].tipo + '</td>' +	
-							'<td>' + array[i].peso + '</td>' +
+						'<td><a onclick="BorrarProducto(' + array[i].id + ')" class="btn btn-danger">   <span class="glyphicon glyphicon-trash">&nbsp;</span>  Borrar</a></td>' +
+						'<td>' + array[i].mail + '</td>' +	
+						'<td>' + array[i].sabor + '</td>' +	
+						'<td>' + array[i].tipo + '</td>' +	
+						'<td>' + array[i].peso + '</td>' +
+						'<td><img src="' + foto + '" style="weight:30px;height:30px;"/></td>' +
 					'</tr>');
 			}		
 		}
@@ -389,4 +380,14 @@ function BuscarVentas(){
 	funcionAjax.fail(function(errorCallBack){
 		console.log("Error: " + errorCallBack);
 	})
+}
+
+function isJson(str){
+	try{
+		JSON.parse(str);
+	}
+	catch(e){
+		return false;
+	}
+	return true;
 }

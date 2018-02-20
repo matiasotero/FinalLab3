@@ -194,15 +194,17 @@ switch ($queHago) {
 		}
 		break;
 	case "BuscarVentas":
-		$valor = isset($_GET['valor']) ? $_GET['valor'] : NULL;
+		$valor = $_GET['valor'];
+		
 		$arrayVentas = [];
-		if(isset($valor)){
-			$arrayVentas = json_encode(Venta::TraerVentaPorClave($valor));
+		if($valor != ""){
+			$arrayVentas = Venta::TraerVentaPorClave($valor);
 		}
 		else{
-			$arrayVentas = json_encode(Venta::TraerTodasLasVentasTxt());
+			$arrayVentas = Venta::TraerTodasLasVentasTxt();
 		}
-		echo $arrayVentas;
+		
+		echo json_encode($arrayVentas);
 		break;
 	default:
 		# code...

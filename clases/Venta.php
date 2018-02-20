@@ -56,10 +56,13 @@ class Venta{
   }
 
   public static function TraerVentaPorClave($clave){
+    $clave = strtolower($clave);
     $arrayVentas = Venta::TraerVentasTxt();
     $arrayVentasFiltradas = [];
-    foreach($arrayData as $venta){
-        if(strpos($clave, $venta[1]) || strpos($clave, $venta[1]) || strpos($clave, $venta[1])){
+    
+    foreach($arrayVentas as $venta){     
+        if((strpos(strtolower($venta->mail), $clave)) !== false || strpos(strtolower($venta->sabor), $clave) !== false){
+          
           array_push($arrayVentasFiltradas, $venta);
         }
     }
