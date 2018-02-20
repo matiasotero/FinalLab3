@@ -19,38 +19,46 @@ function BorrarProducto(idParametro)
 	});	
 }
 
-function EditarProducto(idParametro)
+function EditarHelado()
 {
-	//Mostrar("MostrarFormAlta");
-	//CODIGO DE MOSTRAR FORM ALTA
+	 var sabor = $('#sabor').val();
+	 var tipo = $('#tipo option:selected').text();
 	var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
 		data:{queHacer:"MostrarFormAlta"}
 	});
 	funcionAjax.done(function(retorno){
-		$("#principal").html(retorno);
-		$("#informe").html("Correcto!!!");	
-
-		//TRAER PRODUCTO Y MOSTRARLO
+		$('#principal').html(retorno);
 		var funcionAjax2=$.ajax({
 			url:"nexo.php",
 			type:"post",
 			data:{
-				queHacer:"TraerProducto",
-				id:idParametro	
+				queHacer:"TraerHelado",
+				sabor: sabor,
+				tipo: tipo	
 			}
 		});
 		funcionAjax2.done(function(retorno){
-			var producto = JSON.parse(retorno);		
-			$("#idProducto").val(producto.id);
-			$("#nombre").val(producto.nombre);
-			$("#porcentaje").val(producto.porcentaje);
-			if(producto.fotoRuta != "" && producto.fotoRuta != "null" && producto.fotoRuta != null){
-				//console.log(producto.fotoRuta);
-				$("#frameFoto").html("<img src='tmp/"+producto.fotoRuta+"' style=\"max-height: 200px; max-width: 200px;\"/>" +
-							"<input type='hidden' id='hdnArchivoTemp' value='"+producto.fotoRuta+"' />");
-				$("#hdnArchivoTemp").val(producto.fotoRuta);
+			if(retorno !== 'null'){
+				var helado = JSON.parse(retorno);
+				
+				$("#sabor").val(helado.sabor);
+				$("#precio").val(helado.precio);
+				$('#tipo').val(helado.tipo);
+				$('#precio').val(helado.precio);
+				$('#peso').val(helado.peso);
+				$('#idHelado').val(helado.id);
+				$('#tipoGuardado').val("editar");
+				
+				if(helado.pathFoto !== null){
+					$("#frameFoto").html("<img src='ImagenesHelados/"+helado.pathFoto+"' style=\"max-height: 200px; max-width: 200px;\"/>" +
+								"<input type='hidden' id='hdnArchivoTemp' value='"+helado.pathFoto+"' />");
+					$("#hdnArchivoTemp").val(helado.pathFoto);
+				}
+			}
+			else{
+				$('#principal').html("<h1>No se encontró ninguna coincidencia!</h1>");
 			}
 		});
 		funcionAjax2.fail(function(retorno){	
@@ -154,18 +162,21 @@ function GuardarProducto()
 	helado.precio=$("#precio").val();
 	helado.tipo = $("#tipo option:selected").val();
 	helado.peso = $('#peso').val();
+	helado.archivo = typeof $('#hdnArchivoTemp').val();
+
+	var tipoGuardado = $('#tipoGuardado').val();
 
 	var funcionAjax=$.ajax({
 		url:"nexo.php",
 		type:"post",
 		data:{
 			queHacer:"GuardarProductoTxt",
-			helado: {"sabor": helado.sabor, "precio": helado.precio, "tipo": helado.tipo, "peso": helado.peso}
+			helado: {"sabor": helado.sabor, "precio": helado.precio, "tipo": helado.tipo, "peso": helado.peso, "archivo": helado.archivo},
+			tipoGuardado: tipoGuardado
 		}
 	});
 	funcionAjax.done(function(retorno){
-		console.info(retorno);
-		$('#principal').html("<h1>Helado cargado con éxito!!</h1>");
+		$('#principal').html("<h1>" + retorno +"</h1>");
 		//$("#informe").html("cantidad de agregados \n"+ retorno + "\n" + retorno.responseText);
 		//$('#informe').	
 		
@@ -278,12 +289,6 @@ function GuardarVenta(){
 }
 
 function GuardarVentaConFoto(){
-	// var formData = new FormData();
-	// formData.append("mail", $('#mail').val());
-	// formData.append("sabor", $('#sabor').val());
-	// var tipo = $('#tipo option:selected').text();
-	// formData.append("tipo", tipo);
-	// formData.append("peso", $('#peso').val());
 	var _venta = {};
 	_venta.mail = $('#mail').val();
 	_venta.sabor = $('#sabor').val();
@@ -365,13 +370,13 @@ function BuscarVentas(){
 				var foto = array[i].pathFoto == null ? "ImagenesDeLaVenta/nophoto.jpg" : "ImagenesDeLaVenta/" + array[i].pathFoto;
 				$('#table').find($('#tbody')).append(
 					'<tr id="rows">' +
-						'<td><a onclick="EditarProducto(' + array[i].id + ')" class="btn btn-warning"> <span class="glyphicon glyphicon-pencil">&nbsp;</span>Editar</a></td>' +
-						'<td><a onclick="BorrarProducto(' + array[i].id + ')" class="btn btn-danger">   <span class="glyphicon glyphicon-trash">&nbsp;</span>  Borrar</a></td>' +
+						// '<td><a onclick="EditarHelado(' + array[i].sabor + ', ' + array[i].tipo + ')" class="btn btn-warning"> <span class="glyphicon glyphicon-pencil">&nbsp;</span>Editar</a></td>' +
+						// '<td><a onclick="BorrarHelado(' + array[i].id + ')" class="btn btn-danger">   <span class="glyphicon glyphicon-trash">&nbsp;</span>  Borrar</a></td>' +
 						'<td>' + array[i].mail + '</td>' +	
 						'<td>' + array[i].sabor + '</td>' +	
 						'<td>' + array[i].tipo + '</td>' +	
 						'<td>' + array[i].peso + '</td>' +
-						'<td><img src="' + foto + '" style="weight:30px;height:30px;"/></td>' +
+						'<td><img src="' + foto + '" style="width:30px;height:30px;"/></td>' +
 					'</tr>');
 			}		
 		}

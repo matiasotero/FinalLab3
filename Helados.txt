@@ -1,4 +1,4 @@
-0|Pera|20|Crema|70
+0|Pera|20|Crema|2500
 1|Banana Split|50|Crema|60
 2|Dulce de leche|50|Crema|60
 3|Chocolate|40|Crema|100
@@ -7,3 +7,6 @@
 6|Limon|40|Agua|80
 7|Uva|80|Agua|60
 8|Uva|20|Crema|200
+9|Durazno|20|Agua|200
+10|Vainilla|20|Crema|200
+11|Pistacho|60|Crema|200|20180220_214025.jpg

@@ -16,8 +16,8 @@
 	<table class="table" id="table"  style=" background-color: beige;">
 		<thead>
 			<tr>
-				<th>Editar</th>
-				<th>Borrar</th>
+				<!-- <th>Editar</th>
+				<th>Borrar</th> -->
 				<th>Mail</th>
 				<th>Sabor</th>
 				<th>Tipo</th>

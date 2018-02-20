@@ -48,20 +48,16 @@ switch ($queHago) {
 	case 'MostrarTablaVentas':
 		include('partes/TablaVentas.php');
 		break;
+	case 'MostrarHeladoModificacion':
+		include("partes/HeladoModificacion.php");
+		break;
 	case 'BorrarProducto':
 			$producto = new producto();
 			$producto->id=$_POST['id'];
 			$cantidad=$producto->BorrarProducto();
 			echo $cantidad;
 		break;
-	case 'GuardarProducto':
-			$producto = new producto();
-			$producto->id=$_POST['id'];
-			$producto->nombre=$_POST['nombre'];
-			$producto->porcentaje=$_POST['porcentaje'];
-			$cantidad=$producto->GuardarProducto();
-			echo $cantidad;
-		break;		
+		
 	case 'GuardarUsuario':
 			$usuario = new usuario();
 			$usuario->id=$_POST['id'];
@@ -77,17 +73,23 @@ switch ($queHago) {
 			echo $cantidad;
 		break;
 	case 'GuardarProductoTxt':
-			$producto = $_POST['helado'];
-			
+			$helado = $_POST['helado'];
+			$tipoGuardado = $_POST['tipoGuardado'] == "alta" ? false : true;
+		
 			$miHelado = new Helado();
 			$miHelado->id = 0;
 			
-			$miHelado->sabor = $producto['sabor'];
-			$miHelado->precio = $producto['precio'];
-			$miHelado->tipo = $producto['tipo'];
-			$miHelado->peso = $producto['peso'];
-
-			$miHelado->GuardarHelado();
+			$miHelado->sabor = $helado['sabor'];
+			$miHelado->precio = $helado['precio'];
+			$miHelado->tipo = $helado['tipo'];
+			$miHelado->peso = $helado['peso'];
+			$miHelado->pathFoto = isset($helado['archivo']) ? $helado['archivo'] : NULL;
+			$miHelado->pathFoto = $miHelado->pathFoto !== 'undefined' ? $miHelado->pathFoto :NULL;
+					
+			$miHelado->GuardarHelado($tipoGuardado);
+			if($miHelado->pathFoto !== NULL){
+				Archivo::Mover("./tmp/".$helado["archivo"], "./ImagenesHelados/".$helado["archivo"]);
+			}
 		break;
 	case 'LoginTxt':
 			$nombre = $_POST['nombre'];
@@ -113,9 +115,10 @@ switch ($queHago) {
 			fclose($archivo);
 			echo "LOG_WRONG";
 			break;
-	case 'TraerProducto':
-			$producto = producto::TraerUnProducto($_POST['id']);		
-			echo json_encode($producto) ;
+	case 'TraerHelado':
+			$helado = Helado::TraerUnHelado($_POST['sabor'], $_POST['tipo']);
+			
+			echo json_encode($helado) ;
 		break;
 	case 'TraerUsuario':
 			$usuario = usuario::TraerUnUsuarioPorId($_POST['id']);		
@@ -178,9 +181,7 @@ switch ($queHago) {
 		$ventaParaGuardar->tipo = $venta["tipo"];
 		$ventaParaGuardar->peso = $venta["peso"];
 		$ventaParaGuardar->pathFoto = $venta["archivo"];
-		//$ventaParaGuardar = Venta::InicializateVenta(0, $venta["mail"], $venta["sabor"], $venta["tipo"], $venta["peso"], $venta["archivo"]);
-		// echo var_dump($ventaParaGuardar);
-		// die();
+		
 		if(Helado::BuscarHelado($venta["sabor"], $venta["tipo"]) == "Si hay"){
 			if(!file_exists("./ImagenesDeLaVenta")){
 				mkdir("./ImagenesDeLaVenta",true);

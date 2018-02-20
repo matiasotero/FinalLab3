@@ -2,3 +2,4 @@
 1|motero@motero.com|Pera|Crema|10|20180215_031535.jpg
 2|motero@motero.com|Pera|Crema|10|20180216_145506.jpg
 3|jose@jose.com|Chocolate|Crema|20
+4|nadia@nadia.com|Pera|Crema|20

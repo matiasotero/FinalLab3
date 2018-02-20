@@ -5,3 +5,5 @@
 
 #documents ignore#
 *.pdf
+*.doc
+*.docx
